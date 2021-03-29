@@ -36,9 +36,10 @@ func TestRequest(t *testing.T) {
 	assert.NoError(t, err)
 	log.Info(string(body))
 
-	data := &GetRTMSDataSvcAptTrade{}
+	data := &GetRTMSDataSvcAptTradeResponse{}
 	err = xml.Unmarshal(body, data)
 	assert.NoError(t, err)
 
-	log.Info(data)
+	err = data.Validate()
+	assert.NoError(t, err)
 }
